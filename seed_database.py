@@ -33,7 +33,7 @@ for movie in movie_data:
     movies_in_db.append(new_movie)
 
 for n in range(10):
-    email = f'user{n}@test.com'  # Voila! A unique email!
+    email = f'user{n+1}@test.com'  # Voila! A unique email!
     password = 'test'
 
     # TODO: create a user here
