@@ -13,3 +13,21 @@ model.db.create_all()
 
 with open('data/movies.json') as f:
     movie_data = json.loads(f.read())
+
+# Create movies, store them in list so we can use them
+# to create fake ratings later
+movies_in_db = []
+for movie in movie_data:
+    # get the title, overview, and poster_path from the movie
+    title = movie["title"]
+    overview = movie["overview"]
+    poster_path = movie["poster_path"]
+    # dictionary. Then, get the release_date and convert it to a
+    # datetime object with datetime.strptime
+    release_date_str = movie['release_date']
+    frmt = '%Y-%m-%d'
+    release_date = datetime.strptime(release_date_str, frmt)
+
+    # TODO: create a movie here and append it to movies_in_db
+    new_movie = crud.create_movie(title, overview, release_date, poster_path)
+    movies_in_db.append(new_movie)
