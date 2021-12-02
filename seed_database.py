@@ -40,7 +40,10 @@ for n in range(10):
     new_user = crud.create_user(email, password)
 
     # TODO: create 10 ratings for the user
+    rand_movie_list = []
     for n in range(10):
         rand_movie = choice(movies_in_db)
-        rand_score = randint(1,5)
-        crud.create_rating(new_user, rand_movie, rand_score)
+        if rand_movie not in rand_movie_list:
+            rand_movie_list.append(rand_movie)
+            rand_score = randint(1,5)
+            crud.create_rating(new_user, rand_movie, rand_score)

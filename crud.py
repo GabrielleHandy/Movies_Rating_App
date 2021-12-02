@@ -43,24 +43,32 @@ def create_movie(title, overview, release_date, poster_path):
 def get_movies():
     '''Return a list of all movies'''
 
-    movies = Movie.query.all()
+    movies = Movie.query.order_by(Movie.title).all()
+    
     return movies
 
 def get_movie_by_id(movie_id):
     
     return Movie.query.get(movie_id)
 
+def get_rating_by_user_movie(user_id, movie_id):
+    return Rating.query.filter(Rating.movie_id == movie_id, Rating.user_id == user_id).first()
+
 def create_rating(user, movie, score):
     """Create and return a new rating"""
-    rating = Rating(user=user, movie=movie, score=score)
+
+    rating = get_rating_by_user_movie(user.user_id, movie.movie_id)
+    if rating:
+        rating.update(score)
+    else:
+        rating = Rating(user=user, movie=movie, score=score)
 
     db.session.add(rating)
     db.session.commit()
 
     return rating
 
-def get_rating_by_user_movie(user_id, movie_id):
-    return Rating.query.filter(Rating.movie_id == movie_id, Rating.user_id == user_id).all()
+
 
 if __name__ == '__main__':
     from server import app

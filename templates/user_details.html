@@ -3,11 +3,17 @@
 {% block title %}{{ user.email}} - Details{% endblock %}
 
 {% block body %}
-<h1>{{ user.email }}</h1>
+<h1>{{ user.email }}'s ratings</h1>
+<div class='flexcontainer flexrow'>
 
-<p>
-  {{ user.ratings }}
-</p>
+{% for rat in user.ratings %}
+<div class='flexcontainer'>
+  <img id='preview-sml' src={{rat.movie.poster_path}}>
+  <a href='/movies/{{rat.movie.movie_id}}'>Movie: {{rat.movie.title}}</a>
+  <p>Score: {{ rat.score }}</p>
+</div>
+{% endfor %}
 
+</div>
 
 {% endblock %}

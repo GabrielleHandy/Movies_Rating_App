@@ -10,6 +10,17 @@
     {% block head %}{% endblock %}
   </head>
   <body>
+    {% if session.get('user_id')%}
+    <nav>
+      <h2>Navigation</h2>
+    <ul>
+      <li><a href="/movies">View all movies</a></li>
+      <li><a href="/users">View all users</a></li>
+      <li><a href="/users/{{session.get('user_id')}}">Account Page</a></li>
+      <li><a href="/clear">Logout</a></li>
+    </ul>
+    </nav>
+    {% endif %}
     {% for msg in get_flashed_messages() %}
     <p class="flash-msg">
       {{ msg }}

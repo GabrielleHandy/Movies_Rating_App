@@ -11,7 +11,7 @@
   </p>
 
   {% if rating %}
-  <p>You rated this movie a {{rating[0].score}}</p>
+  <p>You rated this movie a {{rating.score}}</p>
   {%endif%}
 
   <form action='/rating/{{movie.movie_id}}' method="POST">

@@ -4,12 +4,14 @@
   }
 .inline {
     display: inline;
-
 }
   
 .img {
     height: 500px;
-    
+}
+
+#preview-sml{
+    height: 200px;
 }
 
 .flexcontainer {
@@ -17,7 +19,13 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 4em;
-
+    padding: 1em;
 }
+
+.flexrow {
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+
  

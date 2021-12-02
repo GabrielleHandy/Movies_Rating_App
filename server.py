@@ -18,6 +18,12 @@ def hompage():
     # add check if in session
     return render_template('homepage.html')
     
+@app.route('/clear')
+def clear_session():
+    """View Hompage"""
+    # add check if in session
+    session.clear()
+    return redirect('/')
 
 @app.route('/movies')
 def list_movies():
@@ -67,7 +73,7 @@ def login_user():
         if user.password == password:
             flash("Logged in :)")
             session['user_id'] = user.user_id
-            print(session)
+            return redirect(f'/users/{user.user_id}')
         else:
             flash("Incorrect password :(")
     else:
@@ -90,8 +96,8 @@ def add_rating(movie_id):
     user = crud.get_user_by_id(session.get('user_id'))
 
     crud.create_rating(user, movie, int(rating))
-
-    return redirect('/')
+    flash("Your rating has been saved.")
+    return redirect(f'/movies/{movie_id}')
 
 
 if __name__ == "__main__":
