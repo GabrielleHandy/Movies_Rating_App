@@ -3,11 +3,26 @@
 {% block title %}{{ movie.title }} - Details{% endblock %}
 
 {% block body %}
-<h1>{{ movie.title }}</h1>
+<div class='flexcontainer'>
+  <h1>{{ movie.title }}</h1>
+    <img class='img' src="{{ movie.poster_path }}">
+  <p>
+    {{ movie.overview }}
+  </p>
 
-<p>
-  {{ movie.overview }}
-</p>
+  {% if rating %}
+  <p>You rated this movie a {{rating[0].score}}</p>
+  {%endif%}
 
-<img src="{{ movie.poster_path }}">
+  <form action='/rating/{{movie.movie_id}}' method="POST">
+  <div class="slidecontainer">
+      <label>Rate the movie</label>
+      <input type="range" min="1" max="5" name='rating' value="3" id="myRange">
+      <input class='inline' type='submit'>
+  </div>
+
+  </form>
+  
+</div>
+
 {% endblock %}

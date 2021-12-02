@@ -1,0 +1,23 @@
+.slidecontainer {
+    width: 100%; /* Width of the outside container */
+    padding-bottom: 2em;
+  }
+.inline {
+    display: inline;
+
+}
+  
+.img {
+    height: 500px;
+    
+}
+
+.flexcontainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 4em;
+
+}
+ 
